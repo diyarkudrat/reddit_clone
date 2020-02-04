@@ -38,3 +38,5 @@ app.get('/posts/new', (req, res) => {
 app.listen(3000, () => {
     console.log('Reddit listening on localhost:3000')
 });
+
+module.exports = app;
