@@ -14,8 +14,6 @@ app.use(expressValidator());
 // Set db
 require('./data/reddit-db');
 
-//Controllers
-require('./controllers/posts.js')(app);
 
 
 
@@ -26,13 +24,16 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //Routes
-app.get('/', (req, res) => {
-    res.render('home')
-});
-
 app.get('/posts/new', (req, res) => {
     res.render('posts-new')
 });
+
+// app.get('/', (req, res) => {
+//     res.render('home')
+// });
+
+//Controllers
+require('./controllers/posts.js')(app);
 
 
 app.listen(3000, () => {
