@@ -35,6 +35,8 @@ app.get('/posts/new', (req, res) => {
 //Controllers
 require('./controllers/posts.js')(app);
 
+require('./controllers/comments.js')(app);
+
 
 app.listen(3000, () => {
     console.log('Reddit listening on localhost:3000')
