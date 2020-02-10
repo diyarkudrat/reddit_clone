@@ -34,8 +34,8 @@ app.get('/posts/new', (req, res) => {
 
 //Controllers
 require('./controllers/posts.js')(app);
-
 require('./controllers/comments.js')(app);
+require('./controllers/auth.js')(app);
 
 
 app.listen(3000, () => {
