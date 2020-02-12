@@ -20,13 +20,13 @@ module.exports = (app) => {
   app.get('/', (req, res) => {
     
     Post.find({})
-  .then(posts => {
-    res.render("posts-index", { posts });
-  })
-  .catch(err => {
-    console.log(err.message);
-  });
-  });
+      .then(posts => {
+        res.render("posts-index", { posts });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+      });
 
   app.get('/posts/:id', function(req, res) {
     Post.findById(req.params.id).populate('comments').then((post) => {
