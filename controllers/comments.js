@@ -1,14 +1,18 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
+const User = require('../models/user');
 
 
-module.exports = function(app) {
 
-    //CREATE Comment
+module.exports = function (app) {
+
+
+    // CREATE Comment
     app.post("/posts/:postId/comments", function(req, res) {
+
         const comment = new Comment(req.body);
+        comment.author = req.user._id;
         
-        // Save instance of comment model to db
         comment
             .save()
             .then(comment => {
@@ -19,11 +23,10 @@ module.exports = function(app) {
                 return post.save();
             })
             .then(post => {
-                res.redirect('/');
+                res.redirect(`/posts/${post._id}`);
             })
             .catch(err => {
                 console.log(err);
             });
     });
-
-};
+}
