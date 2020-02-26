@@ -52,6 +52,7 @@ const checkAuth = (req, res, next) => {
 require('./controllers/auth.js')(app);
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/replies.js')(app);
 
 
 app.listen(3000, () => {
