@@ -21,33 +21,31 @@ module.exports = app => {
 
   // CREATE REPLY
   app.post("/posts/:postId/comments/:commentId/replies", (req, res) => {
-
-    // Turn reply into a comment object
+    // TURN REPLY INTO A COMMENT OBJECT
     const reply = new Comment(req.body);
     reply.author = req.user._id
-    // Lookup parent post
+    // LOOKUP THE PARENT POST
     Post.findById(req.params.postId)
         .then(post => {
-            // find child comment
+            // FIND THE CHILD COMMENT
             Promise.all([
                 reply.save(),
                 Comment.findById(req.params.commentId),
             ])
                 .then(([reply, comment]) => {
-                    // add reply
+                    // ADD THE REPLY
                     comment.comments.unshift(reply._id);
 
                     return Promise.all([
                         comment.save(),
-                        console.log(comment)
                     ]);
                 })
                 .then(() => {
                     res.redirect(`/posts/${req.params.postId}`);
                 })
                 .catch(console.error);
-            // save change to parent document
+            // SAVE THE CHANGE TO THE PARENT DOCUMENT
             return post.save();
         })
-});
+  });
 };
