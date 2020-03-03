@@ -19,7 +19,8 @@ app.use(expressValidator());
 // Set db
 require('./data/reddit-db');
 
-
+//Static Files
+app.use(express.static('public'));
 
 
 //Middleware

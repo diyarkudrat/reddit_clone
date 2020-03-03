@@ -7,7 +7,10 @@ const UserSchema = new Schema({
   updatedAt: { type: Date },
   password: { type: String, select: false },
   username: { type: String, required: true },
-  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }]
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+  upVotes: [{ type: Schema.Types.ObjectId, ref: "User"}],
+  downVotes: [{ type: Schema.Types.ObjectId, ref: "User"}],
+  voteScore: {type: Number}
 });
 
 // Define the callback with a regular function to avoid problems with this
