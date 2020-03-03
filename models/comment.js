@@ -11,6 +11,8 @@ const CommentSchema = new Schema({
 CommentSchema
     .pre('findOne', Populate('author'))
     .pre('find', Populate('author'))
+    .pre('find', Populate("comments"))
+    .pre("find", Populate("comments"))
 
 
 
